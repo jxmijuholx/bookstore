@@ -6,8 +6,7 @@
 </head>
 <body>
     <h2>Book List</h2>
-    
-    <!-- Add a button to navigate to the 'addbook' page -->
+
     <a th:href="@{/addbook}" class="btn btn-primary">Add Book</a>
 
     <table>
@@ -17,22 +16,23 @@
             <th>Year</th>
             <th>ISBN</th>
             <th>Price</th>
-            <!-- Add a column for delete actions -->
             <th>Delete</th>
+            <th> Edit</th>
         </tr>
         
-        <!-- Loop through the list of books and display them in a table -->
+       
         <tr th:each="book : ${books}">
             <td th:text="${book.title}">Sample Title</td>
             <td th:text="${book.author}">Sample Author</td>
             <td th:text="${book.year}">2023</td>
             <td th:text="${book.isbn}">ISBN123</td>
             <td th:text="${book.price}">$29.99</td>
-            
-            <!-- Add a link/button to delete the book -->
             <td>
                 <a th:href="@{'/delete/' + ${book.id}}" class="btn btn-danger">Delete</a>
             </td>
+             <td>
+    <a th:href="@{'/edit/' + ${book.id}}" class="btn btn-warning">Edit</a>
+</td>
         </tr>
     </table>
 </body>

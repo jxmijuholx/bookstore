@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import java.util.Optional;
 import hh.soft03.bookstore.domain.Book;
 import hh.soft03.bookstore.domain.BookRepository;
 
@@ -51,10 +51,28 @@ public class BookstoreController {
 	        return "redirect:/booklist"; 
 	    }
 
-	    // Delete a book by ID
+	    
 	    @GetMapping("/delete/{id}")
 	    public String deleteBook(@PathVariable Long id) {
 	        bookRepository.deleteById(id);
+	        return "redirect:/booklist"; 
+	    }
+	    @GetMapping("/edit/{id}")
+	    public String editBook(@PathVariable("id") Long id, Model model) {
+	      
+	        Optional<Book> book = bookRepository.findById(id);
+	        
+	        if (book.isPresent()) {
+	            model.addAttribute("book", book.get());
+	            return "editbook";
+	        } else {
+	            return "redirect:/booklist";
+	        }
+	    }
+
+	    @PostMapping("/editbook")
+	    public String saveEditedBook(@ModelAttribute Book editedBook) {
+	        bookRepository.save(editedBook);
 	        return "redirect:/booklist";
 	    }
 	
