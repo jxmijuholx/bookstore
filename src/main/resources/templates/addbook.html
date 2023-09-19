@@ -3,27 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Add New Book</title>
+     <link type="text/css" rel="stylesheet" href="/css/css/bootstrap.min.css" th:href="@{/css/css/bootstrap.min.css}" />
+    
+
 </head>
 <body>
-    <h2>Add New Book</h2>
-    <form method="post" th:object="${newBook}" th:action="@{/addbook}">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" th:field="*{title}" required><br>
 
-        <label for="author">Author:</label>
-        <input type="text" id="author" name="author" th:field="*{author}" required><br>
+    <div class="container">
+        <h2>Add New Book</h2>
+        <form method="post" th:object="${newBook}" th:action="@{/addbook}">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" th:field="*{title}" class="form-control" required>
+            </div>
 
-        <label for="year">Year:</label>
-        <input type="number" id="year" name="year" th:field="*{year}" required><br>
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" th:field="*{author}" class="form-control" required>
+            </div>
 
-        <label for="isbn">ISBN:</label>
-        <input type="text" id="isbn" name="isbn" th:field="*{isbn}" required><br>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input type="number" id="year" name="year" th:field="*{year}" class="form-control" required>
+            </div>
 
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" step="0.01" th:field="*{price}" required><br>
+            <div class="form-group">
+                <label for="isbn">ISBN:</label>
+                <input type="text" id="isbn" name="isbn" th:field="*{isbn}" class="form-control" required>
+            </div>
 
-        <input type="submit" value="Add Book">
-    </form>
-    <a href="/booklist">Back to Book List</a>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" step="0.01" th:field="*{price}" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add Book" class="btn btn-primary">
+            </div>
+        </form>
+        <a href="/booklist" class="btn btn-secondary">Back to Book List</a>
+    </div>
 </body>
 </html>
