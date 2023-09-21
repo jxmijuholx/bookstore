@@ -21,6 +21,7 @@
                     <th>Year</th>
                     <th>ISBN</th>
                     <th>Price</th>
+                    <th>Category</th>
                     <th>Delete</th>
                     <th>Edit</th>
                 </tr>
@@ -32,6 +33,7 @@
                     <td th:text="${book.year}">2023</td>
                     <td th:text="${book.isbn}">ISBN123</td>
                     <td th:text="${book.price}">$29.99</td>
+					 <td th:text="${book.category.name}">Category</td>
                     <td>
                         <a class="btn btn-danger" th:href="@{'/delete/' + ${book.id}}">Delete</a>
 
@@ -39,6 +41,7 @@
                     <td>
                         <a th:href="@{'/edit/' + ${book.id}}" class="btn btn-warning">Edit</a>
                     </td>
+                   
                 </tr>
             </tbody>
         </table>

@@ -20,22 +20,19 @@ public class BookstoreApplication {
     @Bean
     public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
         return (args) -> {
-           
-            Book book1 = new Book("Fjodor Dostojevski", "Muistelmia kuolleesta talosta", 2023, "ISBN123", 29.99);
-            Book book2 = new Book("Fjodor Dostojevski", "Rikos ja rangaistus", 2023, "ISBN456", 19.99);
+            Category category1 = new Category("Science Fiction");
+            Category category2 = new Category("Comic");
+
+            categoryRepository.save(category1);
+            categoryRepository.save(category2);
+
+            Book book1 = new Book("Book 1", "Author 1", 2023, "ISBN123", 29.99, category1);
+            Book book2 = new Book("Book 2", "Author 2", 2023, "ISBN456", 19.99, category2);
 
             bookRepository.save(book1);
             bookRepository.save(book2);
-
-           
-            Category scifi = new Category();
-            scifi.setName("Science Fiction");
-            categoryRepository.save(scifi);
-
-            Category comic = new Category();
-            comic.setName("Comic");
-            categoryRepository.save(comic);
-            
         };
     }
-}
+
+    }
+
