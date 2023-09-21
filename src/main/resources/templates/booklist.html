@@ -33,7 +33,8 @@
                     <td th:text="${book.isbn}">ISBN123</td>
                     <td th:text="${book.price}">$29.99</td>
                     <td>
-                        <a class="btn btn-danger" th:href="@{'/delete/' + book.id}">Delete</a>
+                        <a class="btn btn-danger" th:href="@{'/delete/' + ${book.id}}">Delete</a>
+
                     </td>
                     <td>
                         <a th:href="@{'/edit/' + ${book.id}}" class="btn btn-warning">Edit</a>
