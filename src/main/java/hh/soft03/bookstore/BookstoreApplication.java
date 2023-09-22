@@ -3,7 +3,9 @@ package hh.soft03.bookstore;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 import hh.soft03.bookstore.domain.Book;
 import hh.soft03.bookstore.domain.BookRepository;
@@ -15,6 +17,12 @@ public class BookstoreApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BookstoreApplication.class, args);
+    }
+    @Bean
+    public FilterRegistrationBean<HiddenHttpMethodFilter> hiddenHttpMethodFilter() {
+        FilterRegistrationBean<HiddenHttpMethodFilter> registrationBean = new FilterRegistrationBean<>(new HiddenHttpMethodFilter());
+        registrationBean.setOrder(1);
+        return registrationBean;
     }
 
     @Bean
@@ -35,4 +43,3 @@ public class BookstoreApplication {
     }
 
     }
-

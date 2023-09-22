@@ -22,6 +22,11 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Book> books = new ArrayList<>();
 	
+    
+	public List<Book> getBooks() {
+		return books;
+	}
+
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}

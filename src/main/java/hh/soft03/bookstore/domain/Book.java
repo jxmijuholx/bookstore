@@ -12,7 +12,6 @@ public class Book {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	
 	private Long id;
 	private String title;
 	private String author;
@@ -20,7 +19,10 @@ public class Book {
 	private String isbn;
 	private double price;
 
-	  	@ManyToOne
+	  	public void setCategory(Category category) {
+		this.category = category;
+	}
+		@ManyToOne
 	    @JoinColumn(name = "categoryid")
 	    private Category category;
 	  	
@@ -89,9 +91,6 @@ public class Book {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
-	
-
 
 	@Override
 	public String toString() {
