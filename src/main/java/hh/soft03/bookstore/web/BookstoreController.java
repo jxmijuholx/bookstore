@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.soft03.bookstore.domain.Book;
 import hh.soft03.bookstore.domain.BookRepository;
@@ -74,4 +76,29 @@ public class BookstoreController {
         bookRepository.save(editedBook);
         return "redirect:/booklist";
     }
+    
+    // Tämä metpdi palauttaa kirjat JSON-muodossa
+    @GetMapping("/api/books")
+    //ResponseBody annotaatio varmistaa, että metodin arvo on "serialized" -> JSON
+    @ResponseBody
+    public List<Book> getAllBooks(){
+    	List<Book> books = (List<Book>) bookRepository.findAll();
+    	return books;
+    }
+    
+    //Tämä metodi palauttaa yhden kirjan ID:n mukaan
+    @GetMapping("/api/books/{id}")
+    @ResponseBody
+    public ResponseEntity<Book> getBookById(@PathVariable Long id){
+    	
+    	Optional <Book> book = bookRepository.findById(id);
+    	//Täällä palautetaan ResponseEntity jos kirja löytyy
+    	if(book.isPresent()) {
+    		return ResponseEntity.ok().body(book.get());
+    	}else {
+    		return ResponseEntity.notFound().build();
+    	}
+    	
+    }
+    
 }
