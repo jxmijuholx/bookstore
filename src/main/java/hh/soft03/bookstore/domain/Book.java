@@ -17,7 +17,7 @@ public class Book {
 	private Long id;
 	private String title;
 	private String author;
-	private int year;
+	private int PublishYear;
 	private String isbn;
 	private double price;
 
@@ -37,11 +37,11 @@ public class Book {
 		
 	}
 
-	public Book(String title, String author, int year, String isbn, double price,Category  category) {
+	public Book(String title, String author, int PublishYear, String isbn, double price,Category  category) {
 		super();
 		this.title = title;
 		this.author = author;
-		this.year = year;
+		this.PublishYear = PublishYear;
 		this.isbn = isbn;
 		this.price = price;
 		this.category = category;
@@ -59,8 +59,8 @@ public class Book {
 		return author;
 	}
 
-	public int getYear() {
-		return year;
+	public int getPublishYear() {
+		return PublishYear;
 	}
 
 	public String getIsbn() {
@@ -83,8 +83,8 @@ public class Book {
 		this.author = author;
 	}
 
-	public void setYear(int year) {
-		this.year = year;
+	public void setYear(int PublishYear) {
+		this.PublishYear = PublishYear;
 	}
 
 	public void setIsbn(String isbn) {
@@ -94,12 +94,27 @@ public class Book {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id.equals(book.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn
-				+ ", price=" + price + "]";
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", PublishYear=" + PublishYear + ", isbn="
+				+ isbn + ", price=" + price + ", category=" + category + "]";
 	}
+
+
 	
 
 	
