@@ -1,7 +1,10 @@
 package hh.soft03.bookstore.domain;
 
+
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+
 
 public class SignupForm {
     @NotEmpty
