@@ -8,6 +8,6 @@ RUN mvn package
 
 
 FROM eclipse-temurin:17-jre-focal
-COPY --from=build /app/target/your-application.jar /usr/local/lib/bookstore.jar
+COPY --from=build /app/booksrore.jar /usr/local/lib/bookstore.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/usr/local/lib/bookstore.jar"]
