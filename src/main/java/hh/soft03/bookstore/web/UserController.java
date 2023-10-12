@@ -8,7 +8,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +16,7 @@ import hh.soft03.bookstore.domain.SignupForm;
 import hh.soft03.bookstore.domain.User;
 import hh.soft03.bookstore.domain.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 
 
@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/saveuser", method = RequestMethod.POST)
-    public String save(@Validated @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
+    public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) {
                 String pwd = signupForm.getPassword();
