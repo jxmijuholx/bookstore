@@ -68,7 +68,7 @@ public class BookstoreRepositoryTest {
 	        bookRepository.save(book);
 
 	        // Use the repository to search for the book by title
-	        Book foundBook =  bookRepository.findByTitle(book);
+	        Book foundBook =  bookRepository.findByTitle("Test Book");
 
 	        // Assert that the found book is not null and has the expected attributes
 	        assertThat(foundBook).isNotNull();

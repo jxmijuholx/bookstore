@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -16,8 +17,11 @@ import static org.springframework.security.web.util.matcher.AntPathRequestMatche
 public class WebSecurityConfig {
 
     @Autowired
-    private UserDetailsService userDetailsService;
-
+    private final UserDetailsService userDetailsService;
+    
+    public WebSecurityConfig(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
@@ -27,11 +31,13 @@ public class WebSecurityConfig {
                 .requestMatchers(antMatcher("/about")).permitAll()
                 .requestMatchers(antMatcher("/admin/**")).hasRole("ADMIN")
                 .anyRequest().authenticated()
+                
             )
             .formLogin(formLogin -> formLogin
                 .loginPage("/login")
                 .defaultSuccessUrl("/booklist", true)
                 .permitAll()
+                
             )
             .logout(logout -> logout
                 .permitAll()
@@ -43,4 +49,10 @@ public class WebSecurityConfig {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    
 }
