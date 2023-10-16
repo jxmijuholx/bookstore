@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 import hh.soft03.bookstore.domain.Book;
@@ -15,11 +16,12 @@ import hh.soft03.bookstore.domain.User;
 import hh.soft03.bookstore.domain.UserRepository;
 
 @SpringBootApplication
+@ComponentScan(basePackages = "hh.soft03.bookstore")
 public class BookstoreApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(BookstoreApplication.class, args);
     }
+
 
     @Bean
     public FilterRegistrationBean<HiddenHttpMethodFilter> hiddenHttpMethodFilter() {
