@@ -16,7 +16,6 @@ import hh.soft03.bookstore.domain.User;
 import hh.soft03.bookstore.domain.UserRepository;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "hh.soft03.bookstore")
 public class BookstoreApplication {
     public static void main(String[] args) {
         SpringApplication.run(BookstoreApplication.class, args);
